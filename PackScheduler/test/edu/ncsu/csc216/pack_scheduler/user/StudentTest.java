@@ -15,9 +15,9 @@ public class StudentTest {
 	 */
 	@Test
 	public void testHashCode() {
-		Student original = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
-		Student same = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
-		Student different =  new Student("Bob", "Jones", "id", "email@ncsu.edu", "hashedpassword", 16);
+		User original = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
+		User same = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
+		User different =  new Student("Bob", "Jones", "id", "email@ncsu.edu", "hashedpassword", 16);
 		
 		assertEquals(original.hashCode(), same.hashCode());
 		assertNotEquals(original.hashCode(), different.hashCode());
@@ -134,7 +134,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testSetFirstName() {
-		Student s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		User s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
 		try {
 		    s.setFirstName(null);
 		    fail(); //We don't want to reach this point - an exception should be thrown!
@@ -160,7 +160,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testSetLastName() {
-		Student s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		User s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
 		try {
 		    s.setLastName(null);
 		    fail(); //We don't want to reach this point - an exception should be thrown!
@@ -186,7 +186,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testSetId() {
-		Student s = null;
+		User s = null;
 		try {
 			s = new Student("first", "last", null, "email@ncsu.edu", "hashedpassword");
 		    fail(); //We don't want to reach this point - an exception should be thrown!
@@ -207,7 +207,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testSetEmail() {
-		Student s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		User s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
 		try {
 		    s.setEmail(null);
 		    fail(); //We don't want to reach this point - an exception should be thrown!
@@ -257,7 +257,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testSetPassword() {
-		Student s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		User s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword");
 		try {
 		    s.setPassword(null);
 		    fail(); //We don't want to reach this point - an exception should be thrown!
@@ -309,8 +309,8 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsObject() {
-		Student original = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
-		Student same = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
+		User original = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
+		User same = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
 		
 		// Test Student with same state
 		assertEquals(original, same);
@@ -319,7 +319,7 @@ public class StudentTest {
 		assertEquals(original, original);
 		
 		// Test Student with different first name
-		Student different =  new Student("Bob", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
+		User different =  new Student("Bob", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
 		assertNotEquals(original, different);
 		
 		// Test Student with different last name
@@ -348,7 +348,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testToString() {
-		Student s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
+		User s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 16);
 		assertEquals("first,last,id,email@ncsu.edu,hashedpassword,16", s.toString());
 	}
 	
