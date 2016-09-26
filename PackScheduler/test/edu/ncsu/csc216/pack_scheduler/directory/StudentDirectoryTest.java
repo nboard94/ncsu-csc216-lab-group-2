@@ -12,6 +12,8 @@ import java.util.Scanner;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.user.Student;
+
 /**
  * Tests StudentDirectory.
  * @author Sarah Heckman
@@ -195,4 +197,19 @@ public class StudentDirectoryTest {
 		}
 	}
 
+	/**
+	 * Tests getStudentById().
+	 */
+	@Test
+	public void testGetStudentById() {
+		StudentDirectory sd = new StudentDirectory();
+		assertEquals(null, sd.getStudentById("king"));
+		
+		//Add a student
+		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
+		
+		Student s = sd.getStudentById("zking");
+		assertEquals("zking", s.getId());		
+	}
+	
 }

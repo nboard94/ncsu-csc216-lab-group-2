@@ -143,5 +143,20 @@ public class StudentDirectory {
 			throw new IllegalArgumentException("Unable to write to file " + fileName);
 		}
 	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Student getStudentById(String id) {
+		for (int i = 0; i < studentDirectory.size(); i++) {
+			Student s = studentDirectory.get(i);
+			if (s.getId().equals(id)) {
+				return s;
+			}
+		}
+		return null;
+	}
 
 }

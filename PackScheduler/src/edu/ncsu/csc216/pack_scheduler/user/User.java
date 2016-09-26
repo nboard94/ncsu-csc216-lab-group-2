@@ -9,7 +9,11 @@ public abstract class User {
 	private String password;
 
 	public User(String firstName, String lastName, String id, String email, String password) {
-		super();
+		setFirstName(firstName);
+		setLastName(lastName);
+		setId(id);
+		setEmail(email);
+		setPassword(password);
 	}
 
 	/**
