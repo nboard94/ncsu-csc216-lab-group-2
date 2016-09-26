@@ -89,8 +89,7 @@ public class RegistrationManager {
 	 * @return
 	 */
 	public User getCurrentUser() {
-		// TODO implement method
-		return null;
+		return currentUser;
 	}
 
 	public void clearData() {
