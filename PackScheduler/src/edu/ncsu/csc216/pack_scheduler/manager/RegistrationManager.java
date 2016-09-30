@@ -41,6 +41,13 @@ public class RegistrationManager {
 		return instance;
 	}
 
+	/**
+	 * @return
+	 */
+	public User getCurrentUser() {
+		return currentUser;
+	}
+
 	public CourseCatalog getCourseCatalog() {
 		return courseCatalog;
 	}
@@ -83,13 +90,6 @@ public class RegistrationManager {
 
 	public void logout() {
 		currentUser = registrar;
-	}
-
-	/**
-	 * @return
-	 */
-	public User getCurrentUser() {
-		return currentUser;
 	}
 
 	public void clearData() {
