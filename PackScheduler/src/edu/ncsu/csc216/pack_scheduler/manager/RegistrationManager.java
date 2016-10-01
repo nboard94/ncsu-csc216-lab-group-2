@@ -34,6 +34,7 @@ public class RegistrationManager {
 	private RegistrationManager() {
 		this.courseCatalog = new CourseCatalog();
 		this.studentDirectory = new StudentDirectory();
+		this.registrar = new Registrar();
 	}
 
 	public static RegistrationManager getInstance() {
