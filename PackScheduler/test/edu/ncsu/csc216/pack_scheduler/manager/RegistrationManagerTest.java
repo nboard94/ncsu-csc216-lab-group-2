@@ -1,11 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.manager;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,14 +16,14 @@ import edu.ncsu.csc216.pack_scheduler.user.User;
  * @author Connor Hall, Revana Zeitler
  */
 public class RegistrationManagerTest {
-	private static final String firstName = "JOHN";
-	private static final String lastName = "Smith";
-	private static final String id = "jsmith";
-	private static final String email = "jsmith@ncsu.edu";
-	private static final String password = "pw";
-	private static final int credits = 18;
-	private static final String registrarId = "registrar";
-	private static final String registrarPassword = "Regi5tr@r";
+	private static final String FIRST_NAME = "JOHN";
+	private static final String LAST_NAME = "Smith";
+	private static final String ID = "jsmith";
+	private static final String EMAIL = "jsmith@ncsu.edu";
+	private static final String PASSWORD = "pw";
+	private static final int CREDITS = 18;
+	private static final String REGISTRAR_ID = "registrar";
+	private static final String REGISTRAR_PASSWORD = "Regi5tr@r";
 	
 	private RegistrationManager manager;
 	
@@ -85,14 +80,14 @@ public class RegistrationManagerTest {
 		assertEquals(0, students.getStudentDirectory().length);
 		
 		// Add course to catalog
-		students.addStudent(firstName, lastName, id, email, password, password, credits);
+		students.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, PASSWORD, CREDITS);
 		students = manager.getStudentDirectory();
 		assertEquals(1, students.getStudentDirectory().length);
-		Student s = students.getStudentById(id);
-		assertEquals(firstName, s.getFirstName());
-		assertEquals(lastName, s.getLastName());
-		assertEquals(id, s.getId());
-		assertEquals(email, s.getEmail());
+		Student s = students.getStudentById(ID);
+		assertEquals(FIRST_NAME, s.getFirstName());
+		assertEquals(LAST_NAME, s.getLastName());
+		assertEquals(ID, s.getId());
+		assertEquals(EMAIL, s.getEmail());
 		
 		// Clear course catalog 
 		manager.clearData();
@@ -106,7 +101,7 @@ public class RegistrationManagerTest {
 	@Test
 	public void testLogin() {
 		StudentDirectory students = manager.getStudentDirectory();
-		students.addStudent(firstName, lastName, id, email, password, password, credits);
+		students.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, PASSWORD, CREDITS);
 		
 		assertNull(manager.getCurrentUser());
 		
@@ -114,12 +109,20 @@ public class RegistrationManagerTest {
 		assertFalse(manager.login("admin", "admin"));
 		assertNull(manager.getCurrentUser());
 		
+		// Log in with incorrect password
+		assertFalse(manager.login(ID, "pw1"));
+		assertNull(manager.getCurrentUser());
+		
+		// Log in with incorrect id
+		assertFalse(manager.login("john", PASSWORD));
+		assertNull(manager.getCurrentUser());
+		
 		// Log in as student
-		assertTrue(manager.login(id, password));
+		assertTrue(manager.login(ID, PASSWORD));
 		assertNotNull(manager.getCurrentUser());
 		
 		// Log in as registrar
-		assertTrue(manager.login(registrarId, registrarPassword));
+		assertTrue(manager.login(REGISTRAR_ID, REGISTRAR_PASSWORD));
 		assertNotNull(manager.getCurrentUser());		
 	}
 
@@ -129,7 +132,7 @@ public class RegistrationManagerTest {
 	@Test
 	public void testLogout() {
 		StudentDirectory students = manager.getStudentDirectory();
-		students.addStudent(firstName, lastName, id, email, password, password, credits);
+		students.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, PASSWORD, CREDITS);
 		
 		assertNull(manager.getCurrentUser());
 		
@@ -138,14 +141,14 @@ public class RegistrationManagerTest {
 		assertNull(manager.getCurrentUser());
 		
 		// Current user is a student
-		manager.login(id, password);
+		manager.login(ID, PASSWORD);
 		assertNotNull(manager.getCurrentUser());
 		manager.logout();
 		assertNull(manager.getCurrentUser());
 		
 		
 		// Current user is registrar
-		manager.login(registrarId, registrarPassword);
+		manager.login(REGISTRAR_ID, REGISTRAR_PASSWORD);
 		assertNotNull(manager.getCurrentUser());
 		manager.logout();
 		assertNull(manager.getCurrentUser());
@@ -158,22 +161,22 @@ public class RegistrationManagerTest {
 	public void testGetCurrentUser() {
 		User user;
 		StudentDirectory students = manager.getStudentDirectory();
-		students.addStudent(firstName, lastName, id, email, password, password, credits);
+		students.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, PASSWORD, CREDITS);
 		
 		// No current user
 		user = manager.getCurrentUser();
 		assertNull(user);
 		
 		// Current user is a student
-		manager.login(id, password);
+		manager.login(ID, PASSWORD);
 		user = manager.getCurrentUser();
-		assertEquals(firstName, user.getFirstName());
-		assertEquals(lastName, user.getLastName());
-		assertEquals(id, user.getId());
-		assertEquals(email, user.getEmail());
+		assertEquals(FIRST_NAME, user.getFirstName());
+		assertEquals(LAST_NAME, user.getLastName());
+		assertEquals(ID, user.getId());
+		assertEquals(EMAIL, user.getEmail());
 		
 		// Current user is registrar
-		manager.login(registrarId, registrarPassword);
+		manager.login(REGISTRAR_ID, REGISTRAR_PASSWORD);
 		user = manager.getCurrentUser();
 		assertEquals("Wolf", user.getFirstName());
 		assertEquals("Scheduler", user.getLastName());

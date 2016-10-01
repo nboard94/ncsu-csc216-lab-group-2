@@ -69,7 +69,7 @@ public class RegistrationManager {
 			MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
 			digest.update(password.getBytes());
 			String localHashPW = new String(digest.digest());
-			if (s != null && s.getPassword().equals(localHashPW)) {
+			if (s != null && s.getId().equals(id) && s.getPassword().equals(localHashPW)) {
 				currentUser = s;
 				return true;
 			}

@@ -1,5 +1,10 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
+/**
+ * Represents a generic user. Every user is identified by a first name, last name, and a 
+ * unique id, along with an email address and password.
+ * @author Connor Hall, Revana Zeitler
+ */
 public abstract class User {
 
 	private String firstName;
@@ -8,6 +13,14 @@ public abstract class User {
 	private String email;
 	private String password;
 
+	/**
+	 * Constructs a new User with a first name, last name, unity id, email, and password.
+	 * @param firstName the new User's first name
+	 * @param lastName the new User's last name
+	 * @param id the new User's unity id
+	 * @param email the new User's email address
+	 * @param password the new User's password
+	 */
 	public User(String firstName, String lastName, String id, String email, String password) {
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -126,6 +139,9 @@ public abstract class User {
 		this.id = id;
 	}
 
+	/**
+	 * Returns the hashcode for this User.
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -138,6 +154,10 @@ public abstract class User {
 		return result;
 	}
 
+	/**
+	 * Determines whether two Users are equal. Users are considered equal if they have the same values
+	 * for all fields.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
