@@ -32,6 +32,8 @@ public class RegistrationManager {
 	}
 
 	private RegistrationManager() {
+		this.courseCatalog = new CourseCatalog();
+		this.studentDirectory = new StudentDirectory();
 	}
 
 	public static RegistrationManager getInstance() {
