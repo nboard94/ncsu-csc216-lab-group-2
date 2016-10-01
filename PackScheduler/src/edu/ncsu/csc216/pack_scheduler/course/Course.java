@@ -65,10 +65,10 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	private void setName(String name) {
 		if (name == null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid name");
 		}
 		if (name.length() < 4 || name.length () > 6) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid name");
 		}
 		this.name = name;
 	}
@@ -89,11 +89,11 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	public void setSection(String section) {
 		if (section == null || section.length() != 3) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid section");
 		}
 		for(char c : section.toCharArray()) {
 			if (!Character.isDigit(c)) {
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Invalid section");
 			}
 		}
 		this.section = section;
@@ -115,7 +115,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	public void setCredits(int credits) {
 		if (credits < 1 || credits > 5) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid credits");
 		}
 		this.credits = credits;
 	}
@@ -136,7 +136,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	public void setInstructorId(String instructorId) {
 		if (instructorId == null || instructorId.equals("")) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid instructor id");
 		}
 		this.instructorId = instructorId;
 	}
@@ -153,16 +153,16 @@ public class Course extends Activity implements Comparable<Course> {
 	@Override
 	public void setMeetingDays(String meetingDays) {
 		if (meetingDays == null || meetingDays.equals("")) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid meeting days");
 		}
 		for (char c : meetingDays.toCharArray()){
 			if (c == 'A') {
 				if (meetingDays.length() != 1) {
-					throw new IllegalArgumentException();
+					throw new IllegalArgumentException("Invalid meeting days");
 				}
 			}
 			else if (c != 'M' && c != 'T' && c != 'W' && c != 'H' && c != 'F'){
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Invalid meeting days");
 			}
 		}
 		super.setMeetingDays(meetingDays);

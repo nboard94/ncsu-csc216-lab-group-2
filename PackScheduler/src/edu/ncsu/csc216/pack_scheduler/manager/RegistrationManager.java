@@ -8,6 +8,10 @@ import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 
+/**
+ * 
+ * @author Connor Hall, Revana Zeitler
+ */
 public class RegistrationManager {
 
 	private static RegistrationManager instance;
@@ -92,7 +96,7 @@ public class RegistrationManager {
 	}
 
 	public void logout() {
-		currentUser = registrar;
+		currentUser = null;
 	}
 
 	public void clearData() {

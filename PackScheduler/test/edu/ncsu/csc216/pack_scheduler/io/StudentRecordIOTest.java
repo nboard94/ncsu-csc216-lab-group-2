@@ -98,12 +98,9 @@ public class StudentRecordIOTest {
 	    try {
 	        StudentRecordIO.writeStudentRecords("/home/sesmith5/actual_student_records.txt", students);
 	        fail("Attempted to write to a directory location that doesn't exist or without the appropriate permissions and the write happened.");
-	    } catch (IOException e) {
-	        assertEquals("/home/sesmith5/actual_student_records.txt (Permission denied)", e.getMessage());
-	        //The actual error message on Jenkins!
+	    } catch (Exception e) {
+	    	assertTrue(e instanceof IOException);
 	    }
-	    
-	    checkFiles("ts-test-files/expected_student_records.txt", "ts-test-files/actual_student_records.txt");
 	}
 	
 	/**
