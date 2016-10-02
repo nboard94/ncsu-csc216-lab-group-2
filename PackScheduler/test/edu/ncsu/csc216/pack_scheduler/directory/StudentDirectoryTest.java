@@ -198,7 +198,7 @@ public class StudentDirectoryTest {
 	}
 
 	/**
-	 * Tests getStudentById().
+	 * Tests getStudentById()
 	 */
 	@Test
 	public void testGetStudentById() {
