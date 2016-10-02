@@ -9,8 +9,10 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 
 /**
- * This class handles users logging in to the PackScheduler. Handles if an invalid student attempts to log
- * in or if someone tries to log in twice without logging out.
+ * This class handles users logging into and out of the PackScheduler. It also holds
+ * instances of CourseCatalog and StudentDirectory for the user to interact with. 
+ * This class makes use of the Singleton pattern, so you there is no public constructor
+ * You must call getInstance() in order to get an instance of the class.
  * 
  * @author Connor Hall, Revana Zeitler
  */

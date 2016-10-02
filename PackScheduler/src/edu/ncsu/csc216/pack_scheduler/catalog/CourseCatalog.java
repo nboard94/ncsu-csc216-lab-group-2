@@ -67,7 +67,15 @@ public class CourseCatalog {
 			}
 		}
 		
-		Course c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+		Course c;
+		
+		// Bug fix for GUIs that don't have blank options for times
+		if (meetingDays.equals("A")) {
+			c = new Course(name, title, section, credits, instructorId, meetingDays);
+		} else {
+			c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime); 
+		}
+		
 		return catalog.add(c);
 	}
 
