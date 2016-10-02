@@ -157,7 +157,9 @@ public class StudentDirectory {
 				return s;
 			}
 		}
-		
+		if (s == null) {
+			throw new IllegalArgumentException("User doesn't exist");
+		}
 		return null;
 	}
 

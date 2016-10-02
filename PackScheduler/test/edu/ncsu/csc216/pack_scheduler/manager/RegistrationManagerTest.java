@@ -122,7 +122,6 @@ public class RegistrationManagerTest {
 		assertNotNull(manager.getCurrentUser());
 		
 		//Trying to log in when someone else is already logged in
-		// Log in as student
 		assertFalse(manager.login(ID, PASSWORD));
 		
 		manager.logout();
