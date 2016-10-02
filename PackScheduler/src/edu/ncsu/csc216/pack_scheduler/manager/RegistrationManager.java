@@ -8,6 +8,10 @@ import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 
+/**
+ * 
+ * @author Connor Hall, Revana Zeitler
+ */
 public class RegistrationManager {
 
 	private static RegistrationManager instance;
@@ -61,11 +65,15 @@ public class RegistrationManager {
 
 	public boolean login(String id, String password) {
 		Student s = studentDirectory.getStudentById(id);
+		
+		if (getCurrentUser() != null) {
+			return false;
+		}
 		try {
 			MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
 			digest.update(password.getBytes());
 			String localHashPW = new String(digest.digest());
-			if (s.getPassword().equals(localHashPW)) {
+			if (s != null && s.getId().equals(id) && s.getPassword().equals(localHashPW)) {
 				currentUser = s;
 				return true;
 			}
@@ -92,7 +100,7 @@ public class RegistrationManager {
 	}
 
 	public void logout() {
-		currentUser = registrar;
+		currentUser = null;
 	}
 
 	public void clearData() {

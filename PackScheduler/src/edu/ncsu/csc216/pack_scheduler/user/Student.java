@@ -1,7 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 /**
- * Represents a Student with important information.
- * 
+ * Represents a college Student. Student extends User with additional information about the maximum course
+ * credits each student may take.
  * @author Boyang Zhang, Connor Hall
  */
 public class Student extends User implements Comparable<Student> {
@@ -85,6 +85,9 @@ public class Student extends User implements Comparable<Student> {
 		return thisStudent.compareTo(otherStudent);
 	}
 
+	/**
+	 * Returns the hashcode for this Student
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,6 +96,10 @@ public class Student extends User implements Comparable<Student> {
 		return result;
 	}
 
+	/**
+	 * Determines whether two Students are equal. Students are considered equal if they have the same 
+	 * values for all fields.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

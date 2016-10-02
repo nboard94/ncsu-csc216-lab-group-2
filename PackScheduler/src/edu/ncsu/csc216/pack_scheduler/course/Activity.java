@@ -97,7 +97,7 @@ public abstract class Activity implements Conflict {
 	 */
 	public void setTitle(String title) {
 		if (title == null || title.equals("")) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid title");
 		}
 		this.title = title;
 	}
@@ -158,13 +158,13 @@ public abstract class Activity implements Conflict {
 	 */
 	public void setActivityTime(int startTime, int endTime) {
 		if (getMeetingDays().equals("A") && (startTime != 0 || endTime != 0)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid meeting times");
 		}
 		if (!isValidTime(startTime) || !isValidTime(endTime)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid meeting times");
 		}
 		if (startTime > endTime) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid meeting times");
 		}
 		
 		this.startTime = startTime;

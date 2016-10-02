@@ -145,17 +145,19 @@ public class StudentDirectory {
 	}
 	
 	/**
-	 * 
-	 * @param id
-	 * @return
+	 * Searches the student directory for a Student matching id and returns it if found.
+	 * @param id the unity id of the Student
+	 * @return the Student that matches id if found; null otherwise
 	 */
 	public Student getStudentById(String id) {
+		Student s = null;
 		for (int i = 0; i < studentDirectory.size(); i++) {
-			Student s = studentDirectory.get(i);
+			s = studentDirectory.get(i);
 			if (s.getId().equals(id)) {
 				return s;
 			}
 		}
+		
 		return null;
 	}
 

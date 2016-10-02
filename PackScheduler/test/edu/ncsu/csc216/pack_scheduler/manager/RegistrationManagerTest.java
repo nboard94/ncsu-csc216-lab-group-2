@@ -120,6 +120,7 @@ public class RegistrationManagerTest {
 		// Log in as student
 		assertTrue(manager.login(ID, PASSWORD));
 		assertNotNull(manager.getCurrentUser());
+		manager.logout();
 		
 		// Log in as registrar
 		assertTrue(manager.login(REGISTRAR_ID, REGISTRAR_PASSWORD));
@@ -174,6 +175,7 @@ public class RegistrationManagerTest {
 		assertEquals(LAST_NAME, user.getLastName());
 		assertEquals(ID, user.getId());
 		assertEquals(EMAIL, user.getEmail());
+		manager.logout();
 		
 		// Current user is registrar
 		manager.login(REGISTRAR_ID, REGISTRAR_PASSWORD);
