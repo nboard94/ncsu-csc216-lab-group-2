@@ -150,9 +150,8 @@ public class StudentDirectory {
 	 * @return the Student that matches id if found; null otherwise
 	 */
 	public Student getStudentById(String id) {
-		Student s = null;
 		for (int i = 0; i < studentDirectory.size(); i++) {
-			s = studentDirectory.get(i);
+			Student s = studentDirectory.get(i);
 			if (s.getId().equals(id)) {
 				return s;
 			}
