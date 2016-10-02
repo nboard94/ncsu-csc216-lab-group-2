@@ -106,16 +106,24 @@ public class RegistrationManagerTest {
 		assertNull(manager.getCurrentUser());
 		
 		// Log in with invalid information
-		assertFalse(manager.login("admin", "admin"));
-		assertNull(manager.getCurrentUser());
+		try {
+			manager.login("admin", "admin");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNull(manager.getCurrentUser());
+		}
 		
 		// Log in with incorrect password
 		assertFalse(manager.login(ID, "pw1"));
 		assertNull(manager.getCurrentUser());
 		
 		// Log in with incorrect id
-		assertFalse(manager.login("john", PASSWORD));
-		assertNull(manager.getCurrentUser());
+		try {
+			manager.login("john", PASSWORD);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNull(manager.getCurrentUser());
+		}
 		
 		// Log in as student
 		assertTrue(manager.login(ID, PASSWORD));
