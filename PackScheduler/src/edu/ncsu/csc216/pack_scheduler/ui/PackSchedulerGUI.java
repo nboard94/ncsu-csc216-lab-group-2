@@ -53,7 +53,7 @@ public class PackSchedulerGUI {
 	 */
 	public PackSchedulerGUI() {
 		gui = new JFrame();
-		gui.setSize(800, 900);
+		gui.setSize(800, 700);
 		gui.setLocation(50, 50);
 		gui.setTitle(APP_TITLE);
 		gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -263,6 +263,8 @@ public class PackSchedulerGUI {
 			rPanel.add(pnlCatalog, COURSE_CATALOG_PANEL);
 			rCardLayout.show(rPanel, STUDENT_DIRECTORY_PANEL);
 			
+//			scrollRPanel = new JScrollPane(rPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			
 			GridBagConstraints c = new GridBagConstraints();
 			c.gridx = 0;
 			c.gridy = 0;
@@ -275,10 +277,11 @@ public class PackSchedulerGUI {
 			c.gridx = 0;
 			c.gridy = 1;
 			c.gridwidth = 1;
-			c.weightx = 0.5;
+			c.weightx = 1;
+			c.weighty = 1;
 			c.anchor = GridBagConstraints.FIRST_LINE_START;
 			c.fill = GridBagConstraints.BOTH;
-			add(rPanel, c);			
+			add(rPanel, c);
 		}
 		
 		/**
