@@ -49,10 +49,23 @@ public class CourseNameValidatorFSMTest {
 			assertEquals("Course name cannot start with more than 4 letters.", e.getMessage());
 		}
 		
-	
+		assertFalse(s.isValid("CSCA"));
 		assertFalse(s.isValid("CSCA1"));
 		assertFalse(s.isValid("CSCA12"));
 		
+		try {
+			assertFalse(s.isValid("CSCA1A"));
+			fail();
+		} catch (InvalidTransitionException e) {
+			assertEquals("Course name must have 3 digits.", e.getMessage());
+		}
+		
+		try {
+			assertFalse(s.isValid("CSCA12A"));
+			fail();
+		} catch (InvalidTransitionException e) {
+			assertEquals("Course name must have 3 digits.", e.getMessage());
+		}
 		
 		try {
 			assertFalse(s.isValid("CSCA1234"));

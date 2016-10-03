@@ -71,12 +71,12 @@ public class CourseNameValidatorFSM {
 			}
 			
 			// Use a switch statement for the current character
-			switch(state) {
+			switch(state) { 
 				case STATE_INITIAL:
 					if(Character.isLetter(c)) {
 						state = STATE_L;
 					}
-					else if(Character.isDigit(c)) {
+					else if(Character.isDigit(c)) { 
 						throw new InvalidTransitionException("Course name must start with a letter.");
 					}
 					break;
