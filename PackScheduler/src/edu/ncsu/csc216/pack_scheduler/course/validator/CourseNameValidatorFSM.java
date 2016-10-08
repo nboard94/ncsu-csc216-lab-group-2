@@ -10,31 +10,31 @@ package edu.ncsu.csc216.pack_scheduler.course.validator;
 public class CourseNameValidatorFSM {
 
 	/** Initial state before input is examined */
-	private final int STATE_INITIAL = 0;
+	private static final int STATE_INITIAL = 0;
 	
 	/** State at which one letter has been identified */
-	private final int STATE_L = 1;
+	private static final int STATE_L = 1;
 	
 	/** State at which two letters have been identified */
-	private final int STATE_LL = 2;
+	private static final int STATE_LL = 2;
 	
 	/** State at which three letters have been identified */
-	private final int STATE_LLL = 3;
+	private static final int STATE_LLL = 3;
 	
 	/** State at which four letters have been identified */
-	private final int STATE_LLLL = 4;
+	private static final int STATE_LLLL = 4;
 	
 	/** State at which one digit has been identified */
-	private final int STATE_D = 5;
+	private static final int STATE_D = 5;
 	
 	/** State at which two digits have been identified */
-	private final int STATE_DD = 6;
+	private static final int STATE_DD = 6;
 	
 	/** State at which three digits have been identified */
-	private final int STATE_DDD = 7;
+	private static final int STATE_DDD = 7;
 	
 	/** State at which a suffix letter has been identified */
-	private final int STATE_SUFFIX = 8;
+	private static final int STATE_SUFFIX = 8;
 	
 	/** The state variable keeps track of the current FSM state we are in */
 	private int state;
@@ -152,6 +152,8 @@ public class CourseNameValidatorFSM {
 						throw new InvalidTransitionException("Course name cannot contain digits after the suffix.");
 					}
 					break;
+				default:
+					throw new InvalidTransitionException("Invalid state reached.");
 			}
 			
 			charIndex++;

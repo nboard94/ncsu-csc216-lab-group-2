@@ -1,5 +1,10 @@
 package edu.ncsu.csc216.pack_scheduler.course.validator;
 
+/**
+ * Utility class for checking whether a course name is valid. 
+ * @author Connor Hall
+ * @author Renata Zeitler
+ */
 public class CourseNameValidator {
 	
 	private boolean validEndState;
@@ -12,6 +17,16 @@ public class CourseNameValidator {
 	private NumberState numberState = new NumberState();
 	private State currentState;
 	
+	/**
+	 * Determines whether the given text is a valid course name.
+	 * 
+	 * The course names must match the following format:
+	 *      (1-3 letters)(3 digits)(optionally, a 1 letter suffix)
+	 *      
+	 * @param text the name of the course
+	 * @return true if the course name is valid, or false if the course name is invalid
+	 * @throws InvalidTransitionException when an invalid transition occurs
+	 */
 	public boolean isValid(String text) throws InvalidTransitionException {
 		letterCount = 0;
 		digitCount = 0;
@@ -34,6 +49,13 @@ public class CourseNameValidator {
 	}
 	
 	
+	/**
+	 * An abstract class that represents a state of a string-matching finite
+	 * state machine. Specifies the input handling methods required in each
+	 * state subclass.
+	 * @author Connor Hall
+	 * @author Renata Zeitler
+	 */
 	private abstract class State {
 		
 		public abstract void onLetter() throws InvalidTransitionException;
@@ -45,6 +67,11 @@ public class CourseNameValidator {
 		}
 	}
 	
+	/**
+	 * State where leading letters have been identified.
+	 * @author Connor Hall
+	 * @author Renata Zeitler
+	 */
 	private class LetterState extends State {
 		@Override
 		public void onLetter() throws InvalidTransitionException {
@@ -63,6 +90,11 @@ public class CourseNameValidator {
 		}
 	}
 	
+	/**
+	 * State where a trailing letter suffix has been identified.
+	 * @author Connor Hall
+	 * @author Renata Zeitler
+	 */
 	private class SuffixState extends State {
 		@Override
 		public void onLetter() throws InvalidTransitionException {
@@ -75,6 +107,11 @@ public class CourseNameValidator {
 		}
 	}
 	
+	/**
+	 * Initial state of the FSM.
+	 * @author Connor Hall
+	 * @author Renata Zeitler
+	 */
 	private class InitialState extends State {
 		@Override
 		public void onLetter() {
@@ -88,6 +125,11 @@ public class CourseNameValidator {
 		}
 	}
 	
+	/**
+	 * State where numbers after the initial letters have been identified.
+	 * @author Connor Hall
+	 * @author Renata Zeitler
+	 */
 	private class NumberState extends State {
 		
 		@Override

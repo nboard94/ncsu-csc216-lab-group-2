@@ -1,5 +1,8 @@
 package edu.ncsu.csc216.pack_scheduler.course;
 
+import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
+
 /**
  * An object representing a college level course.
  * The Course has getters and setters for course related data.
@@ -14,6 +17,8 @@ public class Course extends Activity implements Comparable<Course> {
 	private int credits;
 	/** The instructor of this Course. */
 	private String instructorId;
+	/** CourseNameValidator object used to validate course names. */
+	private CourseNameValidator validator;
 	
 	/**
 	 * Constructs a Course object with values for all fields.
@@ -29,6 +34,7 @@ public class Course extends Activity implements Comparable<Course> {
 	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
 			int startTime, int endTime) {
 		super(title, meetingDays, startTime, endTime);
+		validator = new CourseNameValidator();
 		setName(name);
 		setSection(section);
 		setCredits(credits);
@@ -70,7 +76,15 @@ public class Course extends Activity implements Comparable<Course> {
 		if (name.length() < 4 || name.length () > 6) {
 			throw new IllegalArgumentException("Invalid name");
 		}
-		this.name = name;
+		try {
+			if (validator.isValid(name)) {
+				this.name = name;
+			} else {
+				throw new IllegalArgumentException("Invalid name");
+			}
+		} catch (InvalidTransitionException e) {
+			throw new IllegalArgumentException("Invalid name");
+		}
 	}
 	
 	/**

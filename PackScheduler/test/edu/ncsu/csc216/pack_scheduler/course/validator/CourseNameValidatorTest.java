@@ -11,6 +11,10 @@ import org.junit.Test;
  */
 public class CourseNameValidatorTest {
 
+	/**
+	 * Tests CourseNameValidator.isValid().
+	 * @throws InvalidTransitionException
+	 */
 	@Test
 	public void testIsValid() throws InvalidTransitionException {
 		CourseNameValidator s = new CourseNameValidator();
