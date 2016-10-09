@@ -91,18 +91,20 @@ public class RegistrationManager {
 		Student s = studentDirectory.getStudentById(id);
 		
 		if (getCurrentUser() == null) {
-			try {
-				MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
-				digest.update(password.getBytes());
-				String localHashPW = new String(digest.digest());
-				if (s != null && s.getId().equals(id) && s.getPassword().equals(localHashPW)) {
-					currentUser = s;
-					return true;
+			if (s != null) {
+				try {
+					MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
+					digest.update(password.getBytes());
+					String localHashPW = new String(digest.digest());
+					if (s.getId().equals(id) && s.getPassword().equals(localHashPW)) {
+						currentUser = s;
+						return true;
+					}
+				} catch (NoSuchAlgorithmException e) {
+					throw new IllegalArgumentException();
 				}
-			} catch (NoSuchAlgorithmException e) {
-				throw new IllegalArgumentException();
-			}
-	
+			}	
+			
 			if (registrar.getId().equals(id)) {
 				MessageDigest digest;
 				try {
@@ -116,12 +118,12 @@ public class RegistrationManager {
 				} catch (NoSuchAlgorithmException e) {
 					throw new IllegalArgumentException();
 				}
+			} 
+			if (s == null && !registrar.getId().equals(id)) {
+				throw new IllegalArgumentException("User doesn't exist.");
 			}
 		}
 		
-		if (s == null) {
-			throw new IllegalArgumentException("User doesn't exist.");
-		}
 		return false;
 	}
 

@@ -87,7 +87,7 @@ public class CourseNameValidatorFSMTest {
 		} catch (InvalidTransitionException e) {
 			assertEquals("Course name cannot contain digits after the suffix.", e.getMessage());
 		}
-		
+
 	}
 
 }

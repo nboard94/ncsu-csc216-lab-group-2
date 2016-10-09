@@ -133,6 +133,16 @@ public class RegistrationManagerTest {
 		assertFalse(manager.login(ID, PASSWORD));
 		
 		manager.logout();
+
+		//Trying to log in invalid person
+		try {
+			manager.login("ABC", PASSWORD);
+		} catch (IllegalArgumentException e) {
+			assertNull(manager.getCurrentUser());
+		}
+		
+		// Logging in registrar with invalid password
+		assertFalse(manager.login(REGISTRAR_ID, "ABC"));
 		
 		// Log in as registrar
 		assertTrue(manager.login(REGISTRAR_ID, REGISTRAR_PASSWORD));
