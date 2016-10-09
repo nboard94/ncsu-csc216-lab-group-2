@@ -152,8 +152,6 @@ public class CourseNameValidatorFSM {
 						throw new InvalidTransitionException("Course name cannot contain digits after the suffix.");
 					}
 					break;
-				default:
-					throw new InvalidTransitionException("Invalid state reached.");
 			}
 			
 			charIndex++;
