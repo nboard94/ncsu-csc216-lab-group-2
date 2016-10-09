@@ -39,7 +39,8 @@ public class StudentRecordIOTest {
 	        fail("Unable to create hash during setup");
 	    }
 	}
-
+	//Test for 100% coverage purposes
+	StudentRecordIO n = new StudentRecordIO();
 	/**
 	 * Tests readStudentRecords().
 	 */
