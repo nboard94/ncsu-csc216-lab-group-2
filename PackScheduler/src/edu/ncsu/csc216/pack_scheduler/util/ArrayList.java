@@ -100,7 +100,7 @@ public class ArrayList<E> extends AbstractList<E> {
 		E element = list[index];
 		
 		for (int i = index; i < size - 1; i++) {
-			list[i] = list[i+1];
+			list[i] = list[i + 1];
 		}
 		
 		list[--size] = null;

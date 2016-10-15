@@ -121,6 +121,7 @@ public class Student extends User implements Comparable<Student> {
 	
 	/**
 	 * Gets the Students current schedule
+	 * @return this Schedule
 	 */
 	public Schedule getSchedule() {
 		return this.schedule;

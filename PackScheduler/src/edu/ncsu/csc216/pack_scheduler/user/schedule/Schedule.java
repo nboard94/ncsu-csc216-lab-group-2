@@ -60,9 +60,10 @@ public class Schedule {
 	/**
 	 * Adds Course to schedule if possible. Checks to see if a Course has already been added to 
 	 * schedule or if the new Course has time conflicts with other Activities already added.
-	 * @param name Course 
-	 * @param section Course's section number
+	 * @param c the Course to add to the Schedule
 	 * @return true if Course can be added, false if not
+	 * @throws IllegalArgumentException if this Schedule already contains the course or if there
+	 * is a conflict.
 	 */
 	public boolean addCourseToSchedule(Course c) {
 		CourseCatalog catalog  = new CourseCatalog();
@@ -94,7 +95,7 @@ public class Schedule {
 	
 	/**
 	 * Removes course from schedule
-	 * @param idx index of Activity wanting to be removed
+	 * @param c the Course to remove from the Schedule
 	 * @return true if it can be removed, false if otherwise
 	 */
 	public boolean removeCourseFromSchedule(Course c) {
@@ -118,15 +119,13 @@ public class Schedule {
 	/**
 	 * Sets title
 	 * @param titleNew sets new title name
-	 * @throw IllegalArgumentException if null
+	 * @throws IllegalArgumentException if null
 	 */
 	public void setTitle(String titleNew) {
 		if(titleNew == null) {
 			throw new IllegalArgumentException();
 		}
 		this.title = titleNew;
-		
 	}
-	
 	
 }
