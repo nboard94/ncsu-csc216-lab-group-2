@@ -97,13 +97,15 @@ public class Schedule {
 	 * @param idx index of Activity wanting to be removed
 	 * @return true if it can be removed, false if otherwise
 	 */
-	public boolean removeCourseFromSchedule(int idx) {
-		int range = schedule.size() - 1;
-		if (idx > range || idx < 0) {
-			return false;
+	public boolean removeCourseFromSchedule(Course c) {
+		for (int i = 0; i < schedule.size(); i++) {
+			Course d = schedule.get(i);
+			if (d.getName().equals(c.getName()) && d.getSection().equals(c.getSection())) {
+				schedule.remove(i);
+				return true;
+			}
 		}
-		schedule.remove(idx);
-		return true;
+		return false;
 	}
 	
 	/**

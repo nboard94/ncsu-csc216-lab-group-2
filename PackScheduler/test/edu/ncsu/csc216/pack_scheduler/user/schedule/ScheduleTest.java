@@ -23,16 +23,7 @@ public class ScheduleTest {
 	private static final String TITLE = "Discrete Mathematics for Computer Scientists";
 	/** Course section */
 	private static final String SECTION = "001";
-	/** Course credits */
-	private static final int CREDITS = 3;
-	/** Course instructor id */
-	private static final String INSTRUCTOR_ID = "tmbarnes";
-	/** Course meeting days */
-	private static final String MEETING_DAYS = "MWF";
-	/** Course start time */
-	private static final int START_TIME = 935;
-	/** Course end time */
-	private static final int END_TIME = 1025;
+
 	
 	/**
 	 * Tests the constructor
@@ -98,8 +89,6 @@ public class ScheduleTest {
 		CourseCatalog catalog  = new CourseCatalog();
 		catalog.loadCoursesFromFile(validTestFile);
 		
-		//Attempt to remove from empty schedule
-		assertFalse(schedule.removeCourseFromSchedule(0));
 
 		//Add some courses and remove them
 		Course e = catalog.getCourseFromCatalog(NAME, SECTION);
@@ -111,16 +100,12 @@ public class ScheduleTest {
 		assertFalse(schedule.addCourseToSchedule(d));
 		assertEquals(2, schedule.getScheduledCourses().length);
 		
-		//Check that removing a course that doesn't exist when there are 
-		//scheduled courses doesn't break anything
-		assertFalse(schedule.removeCourseFromSchedule(5));
-		assertEquals(2, schedule.getScheduledCourses().length);
-		
+
 		//Remove first course
-		assertTrue(schedule.removeCourseFromSchedule(1));
+		assertTrue(schedule.removeCourseFromSchedule(d));
 		assertEquals(1, schedule.getScheduledCourses().length);
 		//Remove second course
-		assertTrue(schedule.removeCourseFromSchedule(0));
+		assertTrue(schedule.removeCourseFromSchedule(e));
 		assertEquals(0, schedule.getScheduledCourses().length);
 		}
 	

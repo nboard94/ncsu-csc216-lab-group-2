@@ -1,4 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.user;
+
+import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
+
 /**
  * Represents a college Student. Student extends User with additional information about the maximum course
  * credits each student may take.
@@ -8,9 +11,10 @@ public class Student extends User implements Comparable<Student> {
 	
 	private int maxCredits;
 	
-	
 	/** The default maximum number of credits a student can take */
 	public static final int MAX_CREDITS = 18;
+	//Individual student schedule
+	private Schedule schedule = new Schedule();
 	
 	/**
 	 * Constructs a new Student with a first name, last name, id, email, password, and max number of credits.
@@ -36,6 +40,7 @@ public class Student extends User implements Comparable<Student> {
 	 */
 	public Student(String firstName, String lastName, String id, String email, String password) {
 		this(firstName, lastName, id, email, password, MAX_CREDITS);
+		
 	}
 	
 	/**
@@ -112,5 +117,12 @@ public class Student extends User implements Comparable<Student> {
 		if (maxCredits != other.maxCredits)
 			return false;
 		return true;
+	}
+	
+	/**
+	 * Gets the Students current schedule
+	 */
+	public Schedule getSchedule() {
+		return this.schedule;
 	}
 }

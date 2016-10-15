@@ -1,6 +1,8 @@
 package edu.ncsu.csc216.pack_scheduler.ui;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -110,7 +112,7 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 	 * components.
 	 */
 	public CourseCatalogPanel() {
-		super(new GridLayout(4, 1));
+		super(new GridBagLayout());
 		
 		catalog = RegistrationManager.getInstance().getCourseCatalog();
 		
@@ -297,10 +299,38 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		pnlCourseForm.setBorder(boarder);
 		pnlCourseForm.setToolTipText("Course Information");
 		
-		this.add(pnlCatalogButton);
-		this.add(scrollCourseCatalog);
-		this.add(pnlCourseButtons);
-		this.add(pnlCourseForm);
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 0;
+		c.weightx = 1;
+		c.weighty = .2;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.fill = GridBagConstraints.BOTH;
+		this.add(pnlCatalogButton, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		c.weightx = 1;
+		c.weighty = 1;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.fill = GridBagConstraints.BOTH;
+		this.add(scrollCourseCatalog, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = .5;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.fill = GridBagConstraints.BOTH;
+		this.add(pnlCourseButtons, c);
+		
+		c.gridx = 0;
+		c.gridy = 3;
+		c.weightx = 1;
+		c.weighty = 1;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.fill = GridBagConstraints.BOTH;
+		this.add(pnlCourseForm, c);
 		
 	}
 
