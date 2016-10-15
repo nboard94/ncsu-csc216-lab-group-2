@@ -7,6 +7,7 @@ import java.util.AbstractList;
  * and the number of elements may change.
  * @author Connor Hall
  * @author Renata Zeitler
+ * 
  * @param <E> the type of Object held by the ArrayList
  */
 public class ArrayList<E> extends AbstractList<E> {
