@@ -166,30 +166,37 @@ public class ArrayListTest {
 		assertEquals(0, a.size());
 		
 		// Set to empty
-		assertNull(a.set(0, "apple"));
-		assertEquals(1, a.size());
-		assertEquals("apple", a.get(0));
+		try {
+			a.set(0, "apple");
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+			// Cannot set when empty
+		}
+		assertEquals(0, a.size());
+		
+		a.add(0, "apple");
+		a.add(1, "banana");
 		
 		// Set at end
-		assertNull(a.set(1, "banana"));
+		assertEquals("banana", a.set(1, "peach"));
 		assertEquals(2, a.size());
 		assertEquals("apple", a.get(0));
-		assertEquals("banana", a.get(1));
+		assertEquals("peach", a.get(1));
 		
 		// Set at beginning
 		assertEquals("apple", a.set(0, "cantalope"));
 		assertEquals(2, a.size());
 		assertEquals("cantalope", a.get(0));
-		assertEquals("banana", a.get(1));
+		assertEquals("peach", a.get(1));
 
 		a.add(2, "blueberry");
 		assertEquals(3, a.size());
 		assertEquals("cantalope", a.get(0));
-		assertEquals("banana", a.get(1));
+		assertEquals("peach", a.get(1));
 		assertEquals("blueberry", a.get(2));
 		
 		// Set in middle
-		assertEquals("banana", a.set(1, "orange"));
+		assertEquals("peach", a.set(1, "orange"));
 		assertEquals(3, a.size());
 		assertEquals("cantalope", a.get(0));
 		assertEquals("orange", a.get(1));
@@ -218,7 +225,7 @@ public class ArrayListTest {
 		assertEquals("blueberry", a.get(2));
 		
 		try {
-			a.set(3, "orange");
+			a.set(0, "orange");
 			fail();
 		} catch (IllegalArgumentException e) {
 			// Cannot set duplicate
@@ -238,12 +245,6 @@ public class ArrayListTest {
 		assertEquals("cantalope", a.get(0));
 		assertEquals("orange", a.get(1));
 		assertEquals("blueberry", a.get(2));
-		
-		// Extend capacity
-		for (int i = a.size(); i < 20; i++) {
-			a.set(i, "" + i);
-		}
-		assertEquals(20, a.size());
 	}
 	
 	/**

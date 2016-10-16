@@ -122,19 +122,13 @@ public class ArrayList<E> extends AbstractList<E> {
 		if (element == null) {
 			throw new NullPointerException();
 		}
-		if (index < 0 || index > size()) {
+		if (index < 0 || index >= size()) {
 			throw new IndexOutOfBoundsException();
 		}
 		for (int i = 0; i < size(); i++) {
 			if (list[i].equals(element)) {
 				throw new IllegalArgumentException();
 			}
-		}
-		if (index == size()) {
-			if (size() == list.length) {
-				growArray();
-			}
-			size++;
 		}
 		
 		E oldElement = list[index];

@@ -11,7 +11,6 @@ import edu.ncsu.csc216.pack_scheduler.util.ArrayList;
  * 
  * @author Connor Hall
  * @author Renata Ann Zeitler
- *
  */
 public class Schedule {
 	
