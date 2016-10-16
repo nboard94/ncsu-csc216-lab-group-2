@@ -94,6 +94,9 @@ public class Schedule {
 	 * @return true if it can be removed, false if otherwise
 	 */
 	public boolean removeCourseFromSchedule(Course c) {
+		if (c == null) {
+			return false;
+		}
 		for (int i = 0; i < schedule.size(); i++) {
 			Course d = schedule.get(i);
 			if (d.getName().equals(c.getName()) && d.getSection().equals(c.getSection())) {
