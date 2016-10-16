@@ -1,11 +1,9 @@
 package edu.ncsu.csc216.pack_scheduler.user.schedule;
 
-import java.util.ArrayList;
-
-import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.course.Activity;
 import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.util.ArrayList;
 
 
 /**
@@ -62,35 +60,33 @@ public class Schedule {
 	 * schedule or if the new Course has time conflicts with other Activities already added.
 	 * @param c the Course to add to the Schedule
 	 * @return true if Course can be added, false if not
-	 * @throws IllegalArgumentException if this Schedule already contains the course or if there
-	 * is a conflict.
+	 * @throws IllegalArgumentException if this Schedule already contains a duplicate or
+	 * equivalent course or if there is a scheduling conflict
+	 * @throws NullPointerException if c is null
 	 */
 	public boolean addCourseToSchedule(Course c) {
-		CourseCatalog catalog  = new CourseCatalog();
-		Activity a = catalog.getCourseFromCatalog(c.getName(), c.getSection());
-		if (a == null) {
-			return false;
+		if (c == null) {
+			throw new NullPointerException();
 		}
+		
 		//Checks to see if Course is already in Schedule
 		for (int i = 0; i < schedule.size(); i++) {
-			if (schedule.get(i).getTitle().equals(a.getTitle())) {
-				Activity activity = schedule.get(i);
-				if (a.isDuplicate(activity)) {
-					throw new IllegalArgumentException("You are already enrolled in " + c.getName());
-				}
-			} 
-		}
-		//Tests checkConflict
-		for (int i = 0; i < schedule.size(); i++) {
-			try {
-				schedule.get(i).checkConflict(a); 
-			} catch (ConflictException e) {
-				throw new IllegalArgumentException("The course cannot be added due to a conflict.");
+			Activity activity = schedule.get(i);
+			if (activity.equals(c) || activity.isDuplicate(c)) {
+				throw new IllegalArgumentException("You are already enrolled in " + c.getName());
 			}
 		}
-			
-		schedule.add(c);
-		return true;
+		
+		//Tests checkConflict
+		try {
+			for (int i = 0; i < schedule.size(); i++) {
+				schedule.get(i).checkConflict(c); 
+			}
+		} catch(ConflictException e) {
+			throw new IllegalArgumentException("The course cannot be added due to a conflict.");
+		}
+
+		return schedule.add(c);
 	}
 	
 	/**
@@ -123,7 +119,7 @@ public class Schedule {
 	 */
 	public void setTitle(String titleNew) {
 		if(titleNew == null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Title cannot be null");
 		}
 		this.title = titleNew;
 	}

@@ -24,7 +24,6 @@ public class ScheduleTest {
 	/** Course section */
 	private static final String SECTION = "001";
 
-	
 	/**
 	 * Tests the constructor
 	 */
@@ -43,7 +42,7 @@ public class ScheduleTest {
 		Schedule schedule = new Schedule();
 		CourseCatalog catalog  = new CourseCatalog();
 		catalog.loadCoursesFromFile(validTestFile);
-		
+
 		//Attempt to add a course that does exist to schedule
 		Course c = null;
 		try {
@@ -51,11 +50,10 @@ public class ScheduleTest {
 			fail();
 		} catch (NullPointerException n) {
 			assertEquals(0, schedule.getScheduledCourses().length);
-			assertEquals(1, catalog.getCourseCatalog().length);
 		}
-		
+
 		c = catalog.getCourseFromCatalog(NAME, SECTION);
-		
+
 		assertTrue(schedule.addCourseToSchedule(c));
 		assertEquals(1, schedule.getScheduledCourses().length);
 
@@ -65,7 +63,7 @@ public class ScheduleTest {
 		} catch (IllegalArgumentException e) {
 			assertEquals("You are already enrolled in " + c.getName(), e.getMessage());
 		}
-		
+
 		assertEquals(1, schedule.getScheduledCourses().length);
 
 		//Attempt to add a Course with time conflict
@@ -77,9 +75,9 @@ public class ScheduleTest {
 			assertEquals("The course cannot be added due to a conflict.", e.getMessage());
 		}
 		assertEquals(1, schedule.getScheduledCourses().length);
-		
+
 	}
-	
+
 	/**
 	 * Tests removing a course from the schedule
 	 */
@@ -88,18 +86,21 @@ public class ScheduleTest {
 		Schedule schedule = new Schedule();
 		CourseCatalog catalog  = new CourseCatalog();
 		catalog.loadCoursesFromFile(validTestFile);
-		
 
 		//Add some courses and remove them
 		Course e = catalog.getCourseFromCatalog(NAME, SECTION);
 		assertTrue(schedule.addCourseToSchedule(e));
 		Course d = catalog.getCourseFromCatalog("CSC216", "002");
 		assertTrue(schedule.addCourseToSchedule(d));
+
+		try {
+			schedule.addCourseToSchedule(e);
+			fail();
+		} catch (IllegalArgumentException err) {
+			// Cannot add same course twice
+		}
 		
-		assertFalse(schedule.addCourseToSchedule(e));
-		assertFalse(schedule.addCourseToSchedule(d));
 		assertEquals(2, schedule.getScheduledCourses().length);
-		
 
 		//Remove first course
 		assertTrue(schedule.removeCourseFromSchedule(d));
@@ -107,8 +108,8 @@ public class ScheduleTest {
 		//Remove second course
 		assertTrue(schedule.removeCourseFromSchedule(e));
 		assertEquals(0, schedule.getScheduledCourses().length);
-		}
-	
+	}
+
 	/**
 	 * Test Schedule's resetSchedule()
 	 */
@@ -117,23 +118,23 @@ public class ScheduleTest {
 		Schedule schedule = new Schedule();
 		CourseCatalog catalog  = new CourseCatalog();
 		catalog.loadCoursesFromFile(validTestFile);
-		
+
 		//Add some courses and reset schedule
 		Course e = catalog.getCourseFromCatalog(NAME, SECTION);
 		assertTrue(schedule.addCourseToSchedule(e));
 		Course d = catalog.getCourseFromCatalog("CSC216", "002");
 		assertTrue(schedule.addCourseToSchedule(d));
-		
+
 		assertEquals(2, schedule.getScheduledCourses().length);
-		
+
 		schedule.resetSchedule();
 		assertEquals(0, schedule.getScheduledCourses().length);
-		
+
 		//Check that resetting doesn't break future adds
 		assertTrue(schedule.addCourseToSchedule(d));
 		assertEquals(1, schedule.getScheduledCourses().length);
 	}
-	
+
 	/**
 	 * Test Schedule's getScheduledCourses().
 	 */
@@ -142,13 +143,13 @@ public class ScheduleTest {
 		Schedule schedule = new Schedule();
 		CourseCatalog catalog  = new CourseCatalog();
 		catalog.loadCoursesFromFile(validTestFile);
-		
+
 		//Add some courses and get schedule
 		Course e = catalog.getCourseFromCatalog(NAME, SECTION);
 		assertTrue(schedule.addCourseToSchedule(e));
 		Course d = catalog.getCourseFromCatalog("CSC216", "002");
 		assertTrue(schedule.addCourseToSchedule(d));
-		
+
 		String [][] schedule1 = schedule.getScheduledCourses();
 		//Row 0
 		assertEquals(NAME, schedule1[0][0]);
@@ -160,18 +161,18 @@ public class ScheduleTest {
 		assertEquals("Programming Concepts - Java", schedule1[1][2]);
 
 	}
-	
+
 	/**
 	 * Test WolfScheduler.setTitle().
 	 */
 	@Test
 	public void testSetTitle() {
 		Schedule schedule = new Schedule();
-		
+
 		//Set Title and check that changed
 		schedule.setTitle("New Title");
 		assertEquals("New Title", schedule.getTitle());
-		
+
 		//Check that exception is thrown if null title and no
 		//change to title already there.
 		try {
@@ -181,6 +182,6 @@ public class ScheduleTest {
 			assertEquals("New Title", schedule.getTitle());
 		}
 	}
-	
-	
+
+
 }
