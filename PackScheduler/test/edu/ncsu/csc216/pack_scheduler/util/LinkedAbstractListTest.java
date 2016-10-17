@@ -15,20 +15,20 @@ import org.junit.Test;
 public class LinkedAbstractListTest {
 
 	/**
-	 * Tests the ArrayList constructor.
+	 * Tests the LinkedAbstractList constructor.
 	 */
 	@Test
-	public void testArrayList() {
-		ArrayList<String> a = new ArrayList<String>();
+	public void testLinkedAbstractList() {
+		LinkedAbstractList<String> a = new LinkedAbstractList<String>(0);
 		assertEquals(0, a.size());
 	}
 	
 	/**
-	 * Tests ArrayList.add()
+	 * Tests LinkedAbstractList.add()
 	 */
 	@Test
 	public void testAdd() {
-		ArrayList<String> a = new ArrayList<String>();
+		LinkedAbstractList<String> a = new LinkedAbstractList<String>(10);
 		assertEquals(0, a.size());
 		
 		// Add to empty
@@ -106,19 +106,23 @@ public class LinkedAbstractListTest {
 		assertEquals("banana", a.get(3));
 		
 		// Extend capacity
-		for (int i = a.size(); i < 20; i++) {
-			a.add(i, "" + i);
+		try {
+			for (int i = a.size(); i < 20; i++) {
+				a.add(i, "" + i);
+			}
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals(10, a.size());
 		}
-		assertEquals(20, a.size());
 	}
 	
 	
 	/**
-	 * Tests ArrayList.remove()
+	 * Tests LinkedAbstractList.remove()
 	 */
 	@Test
 	public void testRemove() {
-		ArrayList<String> a = new ArrayList<String>();
+		LinkedAbstractList<String> a = new LinkedAbstractList<String>(10);
 		assertEquals(0, a.size());
 		
 		a.add(0, "apple");
@@ -161,11 +165,11 @@ public class LinkedAbstractListTest {
 	}
 	
 	/**
-	 * Tests ArrayList.set().
+	 * Tests LinkedAbstractList.set().
 	 */
 	@Test
 	public void testSet() {
-		ArrayList<String> a = new ArrayList<String>();
+		LinkedAbstractList<String> a = new LinkedAbstractList<String>(10);
 		assertEquals(0, a.size());
 		
 		// Set to empty
@@ -251,11 +255,11 @@ public class LinkedAbstractListTest {
 	}
 	
 	/**
-	 * Tests ArrayList.get()
+	 * Tests LinkedAbstractList.get()
 	 */
 	@Test
 	public void testGet() {
-		ArrayList<String> a = new ArrayList<String>();
+		LinkedAbstractList<String> a = new LinkedAbstractList<String>(10);
 		try {
 			a.get(0);
 			fail();
