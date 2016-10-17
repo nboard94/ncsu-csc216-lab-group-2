@@ -124,15 +124,24 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 			current = current.next;
 		}
 		
-		current = front;
-		for (int i = 0; i < index - 1; i++) {
-			current = current.next;
+		ListNode<E> rtn;
+		if (index == 0) {
+			rtn = front;
+			ListNode<E> old = front.next;
+			front = new ListNode<E>(element);
+			front.next = old;
+		} else {
+			current = front;
+			
+			for (int i = 0; i < index - 1; i++) {
+				current = current.next;
+			}
+			rtn = current.next;
+			ListNode<E> old = current.next.next;
+			current.next = new ListNode<E>(element);
+			current.next.next = old;
+			
 		}
-		
-		ListNode<E> rtn = current.next;
-		ListNode<E> old = current.next.next;
-		current.next = new ListNode<E>(element);
-		current.next.next = old;
 		return rtn.data;
 	}
 	

@@ -21,6 +21,13 @@ public class LinkedAbstractListTest {
 	public void testLinkedAbstractList() {
 		LinkedAbstractList<String> a = new LinkedAbstractList<String>(0);
 		assertEquals(0, a.size());
+		
+		try {
+			a = new LinkedAbstractList<>(-1);
+			fail();
+		} catch (IllegalArgumentException e) {
+			// Cannot have negative capacity;
+		}
 	}
 	
 	/**
@@ -145,22 +152,22 @@ public class LinkedAbstractListTest {
 			// Unable to remove when index < 0
 		}
 		
-		// Remove from beginning
-		assertEquals("apple", a.remove(0));
-		assertEquals("banana", a.get(0));
-		assertEquals("cantalope", a.get(1));
-		assertEquals("orange", a.get(2));
+		// Remove from end
+		assertEquals("orange", a.remove(3));
+		assertEquals("apple", a.get(0));
+		assertEquals("banana", a.get(1));
+		assertEquals("cantalope", a.get(2));
 		assertEquals(3, a.size());
 		
 		// Remove from middle
-		assertEquals("cantalope", a.remove(1));
-		assertEquals("banana", a.get(0));
-		assertEquals("orange", a.get(1));
+		assertEquals("banana", a.remove(1));
+		assertEquals("apple", a.get(0));
+		assertEquals("cantalope", a.get(1));
 		assertEquals(2, a.size());
 		
-		// Remove from end
-		assertEquals("orange", a.remove(1));
-		assertEquals("banana", a.get(0));
+		// Remove from beginning
+		assertEquals("apple", a.remove(0));
+		assertEquals("cantalope", a.get(0));
 		assertEquals(1, a.size());
 	}
 	
@@ -252,6 +259,16 @@ public class LinkedAbstractListTest {
 		assertEquals("cantalope", a.get(0));
 		assertEquals("orange", a.get(1));
 		assertEquals("blueberry", a.get(2));
+		
+		// Set another middle
+		a.add(3, "mango");
+		a.add(4, "grape");
+		assertEquals("mango", a.set(3, "durian"));
+		assertEquals("cantalope", a.get(0));
+		assertEquals("orange", a.get(1));
+		assertEquals("blueberry", a.get(2));
+		assertEquals("durian", a.get(3));
+		assertEquals("grape", a.get(4));
 	}
 	
 	/**
