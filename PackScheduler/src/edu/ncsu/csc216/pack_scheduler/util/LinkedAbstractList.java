@@ -55,10 +55,10 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 		// Check if capacity too high
 		
 		if (front == null) {
-			front = new ListNode(element);
+			front = new ListNode<E>(element);
 		} else if (index == 0) {
 			ListNode<E> oldFront = front;
-			front = new ListNode(element);
+			front = new ListNode<E>(element);
 			front.next = oldFront;
 		} else {
 			
@@ -68,7 +68,7 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 			}
 			
 			ListNode<E> old = current.next;
-			current.next = new ListNode(element);
+			current.next = new ListNode<E>(element);
 			current.next.next = old;
 		}
 		size++;
