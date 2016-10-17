@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.course;
 
+import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
 import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator;
 import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 
@@ -19,6 +20,8 @@ public class Course extends Activity implements Comparable<Course> {
 	private String instructorId;
 	/** CourseNameValidator object used to validate course names. */
 	private CourseNameValidator validator;
+	/** CourseRoll object used to store courses. */
+	private CourseRoll roll;
 	
 	/**
 	 * Constructs a Course object with values for all fields.
@@ -52,6 +55,14 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays) {
 		this(name, title, section, credits, instructorId, meetingDays, 0, 0);
+	}
+	
+	/**
+	 * Returns the CourseRoll.
+	 * @return roll The CourseRoll to return.
+	 */
+	public CourseRoll getRoll() {
+		return roll;
 	}
 
 	/**
@@ -308,4 +319,5 @@ public class Course extends Activity implements Comparable<Course> {
 		String thisCourse = name + section;
 		return thisCourse.compareTo(o.name + o.section);
 	}
+	
 }
