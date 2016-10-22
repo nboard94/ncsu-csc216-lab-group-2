@@ -17,9 +17,9 @@ public class CourseRoll {
 	//Roll's enrollment capacity
 	private int enrollmentCap;
 	//Minimum amount for enrollment
-	private final int MIN_ENROLLMENT = 10;
+	private static final int MIN_ENROLLMENT = 10;
 	//Maximum amount for enrollment
-	private final int MAX_ENROLLMENT = 250;
+	private static final int MAX_ENROLLMENT = 250;
 	
 	/**
 	 * Constructor
