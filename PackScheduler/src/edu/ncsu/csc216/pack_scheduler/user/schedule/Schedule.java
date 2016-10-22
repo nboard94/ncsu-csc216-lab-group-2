@@ -126,4 +126,43 @@ public class Schedule {
 		this.title = titleNew;
 	}
 	
+	/**
+	 * Gets a cumulative sum of total credits in schedule
+	 * @return count is the sum of total credits
+	 */
+	public int getScheduleCredits() {
+		int count = 0;
+		for (int i = 0; i < schedule.size(); i++) {
+			count = count + schedule.get(i).getCredits();
+		}
+		
+		return count;
+	}
+	
+	/**
+	 * Checks to see if course can be added to schedule
+	 * @return true if the Course can be added to the schedule. If the Course is null, if the Course is already in the schedule, 
+	 * or if there is a conflict, canAdd() will return false.
+	 */
+	public boolean canAdd(Course c) {
+		if (c == null) {
+			return false;
+		}
+		//Checks if already enrolled
+		for (int i = 0; i < schedule.size(); i++) {
+			if (schedule.get(i) == c) {
+				return false;
+			}
+		}
+		//Tests checkConflict
+		try {
+			for (int i = 0; i < schedule.size(); i++) {
+				schedule.get(i).checkConflict(c); 
+			}
+		} catch(ConflictException e) {
+			throw new IllegalArgumentException("The course cannot be added due to a conflict.");
+		}
+		return true;
+	}
+	
 }
