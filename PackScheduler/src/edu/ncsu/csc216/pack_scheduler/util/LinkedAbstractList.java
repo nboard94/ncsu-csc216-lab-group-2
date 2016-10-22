@@ -14,9 +14,15 @@ import edu.ncsu.csc216.pack_scheduler.util.ArrayList;
 public class LinkedAbstractList<E> extends ArrayList<E> {
 	
 	private ListNode<E> front;
+	/** Size of the list */
 	private int size;
+	/**Max size of list */
 	private int capacity;
 	
+	/**
+	 * Constructor
+	 * @param capacity max amount allowed in this List
+	 */
 	public LinkedAbstractList(int capacity) {
 		if (capacity < 0) {
 			throw new IllegalArgumentException();

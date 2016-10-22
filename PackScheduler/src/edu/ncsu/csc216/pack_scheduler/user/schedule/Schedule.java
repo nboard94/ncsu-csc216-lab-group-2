@@ -141,6 +141,7 @@ public class Schedule {
 	
 	/**
 	 * Checks to see if course can be added to schedule
+	 * @param c Course Student wants to add
 	 * @return true if the Course can be added to the schedule. If the Course is null, if the Course is already in the schedule, 
 	 * or if there is a conflict, canAdd() will return false.
 	 */

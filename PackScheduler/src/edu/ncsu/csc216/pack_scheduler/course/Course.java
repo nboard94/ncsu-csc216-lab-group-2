@@ -32,6 +32,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param section section of Course
 	 * @param credits credit hours for Course
 	 * @param instructorId instructor's unity id
+	 * @param enrollmentCap max Students allowed to enroll
 	 * @param meetingDays meeting days for Course as a series of chars
 	 * @param startTime	start time for Course
 	 * @param endTime end time for Course
@@ -55,6 +56,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param section section of Course
 	 * @param credits credit hours for Course
 	 * @param instructorId instructor's unity id 
+	 * @param enrollmentCap max Students allowed to enroll
 	 * @param meetingDays end time for Course
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) {

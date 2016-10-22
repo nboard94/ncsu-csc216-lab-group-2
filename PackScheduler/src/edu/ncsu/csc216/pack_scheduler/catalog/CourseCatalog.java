@@ -51,6 +51,7 @@ public class CourseCatalog {
 	 * @param section the section number of the Course
 	 * @param credits the number of credit hours the Course has
 	 * @param instructorId the Course's instructor's unity id
+	 * @param enrollmentCap the Course's max enrollment allowed
 	 * @param meetingDays a String listing the days of the week the Course meets on
 	 * @param startTime the Course's start time
 	 * @param endTime the Course's end time
