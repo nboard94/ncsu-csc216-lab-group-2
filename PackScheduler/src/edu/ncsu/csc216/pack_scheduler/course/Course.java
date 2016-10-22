@@ -65,7 +65,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 * Returns the CourseRoll.
 	 * @return roll The CourseRoll to return.
 	 */
-	public CourseRoll getRoll() {
+	public CourseRoll getCourseRoll() {
 		return roll;
 	}
 

@@ -758,7 +758,7 @@ public class CourseTest {
 		assertEquals(array[1], c1.getSection());
 		assertEquals(array[2], c1.getTitle());
 		assertEquals(array[3], c1.getMeetingString());
-		assertEquals(array[4], c1.getRoll().getOpenSeats() + "");
+		assertEquals(array[4], c1.getCourseRoll().getOpenSeats() + "");
 	}
 	
 	/**
