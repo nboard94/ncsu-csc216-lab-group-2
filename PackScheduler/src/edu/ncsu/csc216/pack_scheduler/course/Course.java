@@ -18,6 +18,8 @@ public class Course extends Activity implements Comparable<Course> {
 	private int credits;
 	/** The instructor of this Course. */
 	private String instructorId;
+	/** Max capacity for a course to have*/
+	private int enrollmentCap;
 	/** CourseNameValidator object used to validate course names. */
 	private CourseNameValidator validator;
 	/** CourseRoll object used to store courses. */
@@ -34,7 +36,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param startTime	start time for Course
 	 * @param endTime end time for Course
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays,
 			int startTime, int endTime) {
 		super(title, meetingDays, startTime, endTime);
 		validator = new CourseNameValidator();
@@ -42,6 +44,8 @@ public class Course extends Activity implements Comparable<Course> {
 		setSection(section);
 		setCredits(credits);
 		setInstructorId(instructorId);
+		this.enrollmentCap = enrollmentCap;
+		this.roll = new CourseRoll(enrollmentCap);
 	}
 	
 	/**
@@ -53,8 +57,8 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param instructorId instructor's unity id 
 	 * @param meetingDays end time for Course
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays) {
-		this(name, title, section, credits, instructorId, meetingDays, 0, 0);
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) {
+		this(name, title, section, credits, instructorId, enrollmentCap, meetingDays, 0, 0);
 	}
 	
 	/**
@@ -203,11 +207,12 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	@Override
 	public String[] getShortDisplayArray() {
-		String[] array = new String[4];
+		String[] array = new String[5];
 		array[0] = getName();
 		array[1] = getSection();
 		array[2] = getTitle();
 		array[3] = getMeetingString();
+		array[4] = roll.getOpenSeats() + "";
 		return array;
 	}
 
@@ -303,7 +308,7 @@ public class Course extends Activity implements Comparable<Course> {
      */
 	public String toString() {
 	    if (getMeetingDays().equals("A")) {
-	        return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + getMeetingDays();
+	        return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + enrollmentCap + "," + getMeetingDays();
 	    }
 	    return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + getMeetingDays() + "," + getStartTime() + "," + getEndTime();
 	}
