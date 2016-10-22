@@ -149,19 +149,19 @@ public class Schedule {
 		if (c == null) {
 			return false;
 		}
-		//Checks if already enrolled
+		// Checks if already enrolled
 		for (int i = 0; i < schedule.size(); i++) {
-			if (schedule.get(i) == c) {
+			if (schedule.get(i).isDuplicate(c)) {
 				return false;
 			}
 		}
-		//Tests checkConflict
+		// Tests for conflicts
 		try {
 			for (int i = 0; i < schedule.size(); i++) {
 				schedule.get(i).checkConflict(c); 
 			}
 		} catch(ConflictException e) {
-			throw new IllegalArgumentException("The course cannot be added due to a conflict.");
+			return false;
 		}
 		return true;
 	}

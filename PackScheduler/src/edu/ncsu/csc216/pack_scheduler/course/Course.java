@@ -204,7 +204,8 @@ public class Course extends Activity implements Comparable<Course> {
 	 * The first element contains the Course's name,
 	 * the second the Course's section,
 	 * the third the Course's title,
-	 * the fourth the Course's meeting string.
+	 * the fourth the Course's meeting string, and
+	 * the fifth the Course's number of open seats.
 	 * @return the Course's short display array
 	 */
 	@Override

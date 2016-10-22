@@ -117,18 +117,14 @@ public class CourseCatalog {
 	}
 	
 	/**
-	 * Returns the name, section, title, and meeting information for each 
+	 * Returns the short display array for each 
 	 * of the Courses in the catalog
 	 * @return a two-dimensional String array with the Course catalog information
 	 */
 	public String[][] getCourseCatalog() {
 		String[][] array = new String[catalog.size()][4];
 		for (int i = 0; i < catalog.size(); i++) {
-			Course c = catalog.get(i);
-			array[i][0] = c.getName();
-			array[i][1] = c.getSection();
-			array[i][2] = c.getTitle();
-			array[i][3] = c.getMeetingString();
+			array[i] = catalog.get(i).getShortDisplayArray();
 		}
 		return array;
 	}
