@@ -58,7 +58,7 @@ public class CourseCatalog {
 	 * @throws IllegalArgumentException if the Course could not be constructed from the
 	 * given information
 	 */
-	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId,
+	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId, int enrollmentCap,
 			String meetingDays, int startTime, int endTime) {
 		for (int i = 0; i < catalog.size(); i++) {
 			Course other = catalog.get(i);
@@ -71,9 +71,9 @@ public class CourseCatalog {
 		
 		// Bug fix for GUIs that don't have blank options for times
 		if (meetingDays.equals("A")) {
-			c = new Course(name, title, section, credits, instructorId, meetingDays);
+			c = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays);
 		} else {
-			c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime); 
+			c = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays, startTime, endTime); 
 		}
 		
 		return catalog.add(c);

@@ -50,7 +50,7 @@ public class RegistrationManagerTest {
 		assertEquals(0, catalog.getCourseCatalog().length);
 		
 		// Add course to catalog
-		catalog.addCourseToCatalog("CSC116", "Intro to Programming - Java", "001", 3, "jdyoung2", "MW", 910, 1100);
+		catalog.addCourseToCatalog("CSC116", "Intro to Programming - Java", "001", 3, "jdyoung2", 10, "MW", 910, 1100);
 		catalog = manager.getCourseCatalog();
 		assertEquals(1, catalog.getCourseCatalog().length);
 		Course course = catalog.getCourseFromCatalog("CSC116", "001");

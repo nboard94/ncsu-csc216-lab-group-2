@@ -698,7 +698,7 @@ public class CourseTest {
 	@Test
 	public void testToString() {
 		Activity c1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
-		String s1 = "CSC216,Programming Concepts - Java,001,4,sesmith5,MW,1330,1445";
+		String s1 = "CSC216,Programming Concepts - Java,001,4,sesmith5,20,MW,1330,1445";
 		assertEquals(s1, c1.toString());
 		
 		Activity c2 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, "A");

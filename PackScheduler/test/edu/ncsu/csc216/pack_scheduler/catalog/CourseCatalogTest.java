@@ -19,12 +19,6 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
  * @author Boyang Zhang, Connor Hall
  */
 public class CourseCatalogTest {
-
-/*	private final String validTestFile = "test-files/course_records.txt";
-	*//** Invalid course records *//*
-	private final String invalidTestFile = "test-files/invalid_course_records.txt";*/
-
-	
 	
 	/** Course name */
 	private static final String NAME = "CSC216";
@@ -38,6 +32,8 @@ public class CourseCatalogTest {
 	private static final int CREDITS = 4;
 	/** Course instructor id */
 	private static final String INSTRUCTOR_ID = "sesmith5";
+	/** Course enrollment capacity */
+	private static final int ENROLLMENT_CAP = 20;
 	/** Course meeting days */
 	private static final String MEETING_DAYS = "TH";
 	/** Course start time */
@@ -82,8 +78,8 @@ public class CourseCatalogTest {
 		assertNull(c.getCourseFromCatalog("CSC492", "001"));
 
 		// Attempt to get a course that does exist
-		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
-		c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
+		c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(course, c.getCourseFromCatalog(NAME, SECTION));
 	}
 
@@ -93,11 +89,11 @@ public class CourseCatalogTest {
 	@Test
 	public void testAddCourseToCatalog() {
 		CourseCatalog c = new CourseCatalog();
-		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Course course = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 
 		// Add a valid course
 		assertTrue(
-				c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
+				c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME));
 		assertEquals(1, c.getCourseCatalog().length);
 		String[] a = c.getCourseCatalog()[0];
 		assertEquals(NAME, a[0]);
@@ -106,11 +102,11 @@ public class CourseCatalogTest {
 		assertEquals(course.getMeetingString(), a[3]);
 		
 		// Attempt the same course again
-		assertFalse(c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
+		assertFalse(c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME));
 		
 		// Attempt to add an invalid course
 		try {
-			c.addCourseToCatalog(NAME, TITLE, SECTIONTWO, 0, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+			c.addCourseToCatalog(NAME, TITLE, SECTIONTWO, 0, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 			fail();
 		} catch (IllegalArgumentException e) {
 			// credits cannot be 1
@@ -128,7 +124,7 @@ public class CourseCatalogTest {
 		assertFalse(c.removeCourseFromCatalog(NAME, SECTION));
 
 		// Add some courses and remove them
-		assertTrue(c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
+		assertTrue(c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME));
 		assertEquals(1, c.getCourseCatalog().length);
 		assertTrue(c.removeCourseFromCatalog(NAME, SECTION));
 	}
@@ -141,14 +137,14 @@ public class CourseCatalogTest {
 		CourseCatalog c = new CourseCatalog();
 
 		// Add some courses and reset schedule
-		assertTrue(c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
+		assertTrue(c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME));
 		assertEquals(1, c.getCourseCatalog().length);
 
 		c.newCourseCatalog();
 		assertEquals(0, c.getCourseCatalog().length);
 
 		// Check that resetting doesn't break future adds
-		assertTrue(c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME));
+		assertTrue(c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME));
 		assertEquals(1, c.getCourseCatalog().length);
 	}
 
@@ -161,7 +157,7 @@ public class CourseCatalogTest {
 
 		// Get the catalog and make sure contents are correct
 		// Name, section, title
-		c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		c.addCourseToCatalog(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, ENROLLMENT_CAP, MEETING_DAYS, START_TIME, END_TIME);
 		String[][] catalog = c.getCourseCatalog();
 		// Row 0
 		assertEquals(NAME, catalog[0][0]);

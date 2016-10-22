@@ -310,7 +310,7 @@ public class Course extends Activity implements Comparable<Course> {
 	    if (getMeetingDays().equals("A")) {
 	        return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + enrollmentCap + "," + getMeetingDays();
 	    }
-	    return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + getMeetingDays() + "," + getStartTime() + "," + getEndTime();
+	    return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + enrollmentCap + "," + getMeetingDays() + "," + getStartTime() + "," + getEndTime();
 	}
 
 	/**

@@ -15,8 +15,8 @@ public class ActivityTest {
 	 */
 	@Test
 	public void testCheckConflict() {
-		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445);
-	    Activity a2 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "TH", 1330, 1445);
+		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "MW", 1330, 1445);
+	    Activity a2 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "TH", 1330, 1445);
 	    try {
 	        a1.checkConflict(a2);
 	        assertEquals("Incorrect meeting string for this Activity.", "MW 1:30PM-2:45PM", a1.getMeetingString());
@@ -68,7 +68,7 @@ public class ActivityTest {
 	    }
 	    
 	    // Arranged Activity
-	    Activity a3 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "A");
+	    Activity a3 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
 	    try {
 	    	a1.checkConflict(a3);
 	    	a3.checkConflict(a1);

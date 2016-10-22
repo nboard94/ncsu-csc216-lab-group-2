@@ -65,6 +65,7 @@ public class CourseRecordIO {
 		String section;
 		int credits;
 		String instructorId;
+		int enrollmentCap;
 		String meetingDays;
 		int startTime;
 		int endTime;
@@ -77,15 +78,16 @@ public class CourseRecordIO {
 			section = lineReader.next();
 			credits = lineReader.nextInt();
 			instructorId = lineReader.next();
+			enrollmentCap = lineReader.nextInt();
 			meetingDays = lineReader.next();
 			if (lineReader.hasNext()) {
 				startTime = lineReader.nextInt();
 				endTime = lineReader.nextInt();
 				lineReader.close();
-				return new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+				return new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays, startTime, endTime);
 			}
 			lineReader.close();
-			return new Course(name, title, section, credits, instructorId, meetingDays);
+			return new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays);
 		} catch (NoSuchElementException e) {
 			throw new IllegalArgumentException();
 		}
