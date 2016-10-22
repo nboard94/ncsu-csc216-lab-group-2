@@ -130,6 +130,7 @@ public class Student extends User implements Comparable<Student> {
 	
 	/**
 	 * Checks to see if a Student can add a course
+	 * @param c The course that is trying to be added.
 	 * @return true if yes, false if there is a schedule conflict or credits exceed maximum amount
 	 */
 	public boolean canAdd(Course c) {

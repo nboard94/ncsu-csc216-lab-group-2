@@ -32,11 +32,17 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 		this.capacity = capacity;
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.ncsu.csc216.pack_scheduler.util.ArrayList#size()
+	 */
 	public int size() {
 		return size;
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see edu.ncsu.csc216.pack_scheduler.util.ArrayList#add(int, java.lang.Object)
+	 */
 	public void add(int index, E element) {
 		if (index < 0 || index > size()) {
 			throw new IndexOutOfBoundsException();
@@ -80,6 +86,9 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 		size++;
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.ncsu.csc216.pack_scheduler.util.ArrayList#remove(int)
+	 */
 	public E remove(int index) {
 		if (index < 0 || index >= size()) {
 			throw new IndexOutOfBoundsException();
@@ -101,6 +110,9 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 		return rtn.data;
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.ncsu.csc216.pack_scheduler.util.ArrayList#get(int)
+	 */
 	public E get(int index) {
 		if (index < 0 || index >= size()) {
 			throw new IndexOutOfBoundsException();
@@ -113,6 +125,9 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 		return current.data;
 	}
 	
+	/* (non-Javadoc)
+	 * @see edu.ncsu.csc216.pack_scheduler.util.ArrayList#set(int, java.lang.Object)
+	 */
 	public E set(int index, E element) {
 		if (index < 0 || index >= size()) {
 			throw new IndexOutOfBoundsException();
@@ -151,6 +166,13 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 		return rtn.data;
 	}
 	
+	/**
+	 * ListNode class
+	 * 
+	 * @author Connor Hall
+	 * @author Renata Ann Zeitler
+	 * @author Nick Board
+	 */
 	private class ListNode<T> {
 		public T data;
 		public ListNode<T> next;
