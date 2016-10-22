@@ -32,16 +32,23 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 		this.capacity = capacity;
 	}
 	
-	/* (non-Javadoc)
-	 * @see edu.ncsu.csc216.pack_scheduler.util.ArrayList#size()
+	/**
+	 * Returns the number of elements in this list.
+	 * @return the number of elements in the list
 	 */
 	public int size() {
 		return size;
 	}
 	
 	
-	/* (non-Javadoc)
-	 * @see edu.ncsu.csc216.pack_scheduler.util.ArrayList#add(int, java.lang.Object)
+	/**
+	 * Inserts the element at the specified index in the list.
+	 * @param index the location to add the element
+	 * @param element the element to add
+	 * @throws NullPointerException if element is null
+	 * @throws IllegalArgumentException if element is already in the list
+	 * @throws IndexOutOfBoundsException if index is less than 0 or greater
+	 * than the ArrayList's size.
 	 */
 	public void add(int index, E element) {
 		if (index < 0 || index > size()) {
@@ -86,8 +93,12 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 		size++;
 	}
 	
-	/* (non-Javadoc)
-	 * @see edu.ncsu.csc216.pack_scheduler.util.ArrayList#remove(int)
+	/**
+	 * Removes the element from the specified index in the list.
+	 * @param index the location to remove from
+	 * @return the element previously at the specified position
+	 * @throws IndexOutOfBoundsException if index is less than 0 or greater than
+	 * or equals to this ArrayList's size
 	 */
 	public E remove(int index) {
 		if (index < 0 || index >= size()) {
@@ -110,8 +121,11 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 		return rtn.data;
 	}
 	
-	/* (non-Javadoc)
-	 * @see edu.ncsu.csc216.pack_scheduler.util.ArrayList#get(int)
+	/**
+	 * Returns the element at the specified position in the list
+	 * @param index the index of the element
+	 * @return the element at the specified index
+	 * @throws IndexOutOfBoundsException if the index is out of range
 	 */
 	public E get(int index) {
 		if (index < 0 || index >= size()) {
@@ -125,8 +139,15 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 		return current.data;
 	}
 	
-	/* (non-Javadoc)
-	 * @see edu.ncsu.csc216.pack_scheduler.util.ArrayList#set(int, java.lang.Object)
+	/**
+	 * Replaces the element at the specified index with the given element.
+	 * @param index index of the element to replace
+	 * @param element the element to stored at the given index
+	 * @return the element previously at the specified position
+	 * @throws NullPointerException if element is null
+	 * @throws IllegalArgumentException if element is already in the list
+	 * @throws IndexOutOfBoundsException if index is less than 0 or greater than 
+	 * this ArrayList's size.
 	 */
 	public E set(int index, E element) {
 		if (index < 0 || index >= size()) {
@@ -172,6 +193,8 @@ public class LinkedAbstractList<E> extends ArrayList<E> {
 	 * @author Connor Hall
 	 * @author Renata Ann Zeitler
 	 * @author Nick Board
+	 * 
+	 * @param <T> The generic type to represent the object that can be added.
 	 */
 	private class ListNode<T> {
 		public T data;
