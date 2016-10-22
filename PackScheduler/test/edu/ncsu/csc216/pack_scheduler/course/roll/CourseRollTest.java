@@ -13,6 +13,13 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
  * @author Nick Board
  */
 public class CourseRollTest {
+	
+	private void fillCourseRoll(CourseRoll c) {
+		for (int i = 0; c.getOpenSeats() > 0; i++) {
+			String value = "student" + i;
+			c.enroll(new Student(value, value, value, value + "@ncsu.edu", "pw"));
+		}
+	}
 
 	/**
 	 * Tests CourseRoll constructor
@@ -36,9 +43,41 @@ public class CourseRollTest {
 		} catch (IllegalArgumentException e) {
 			// Cannot have more than 250 students
 		}
+	}
+	
+	/**
+	 * Test CourseRoll.setEnrollmentCap().
+	 */
+	@Test
+	public void testSetEnrollmentCap() {
+		CourseRoll c = new CourseRoll(100);
 		
 		c.setEnrollmentCap(20);
 		assertEquals(20, c.getEnrollmentCap());
+		
+		try {
+			c.setEnrollmentCap(5);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals(20, c.getEnrollmentCap());
+		}
+		
+		try {
+			c.setEnrollmentCap(500);
+			fail();
+		} catch (IllegalArgumentException e) {
+
+			assertEquals(20, c.getEnrollmentCap());
+		}
+		
+		fillCourseRoll(c);
+		
+		try {
+			c.setEnrollmentCap(10);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals(20, c.getEnrollmentCap());
+		}
 	}
 	
 	/**
@@ -68,10 +107,7 @@ public class CourseRollTest {
 			assertEquals(9, c.getOpenSeats());
 		}
 		
-		for (int i = 0; c.getOpenSeats() > 0; i++) {
-			String value = "student" + i;
-			c.enroll(new Student(value, value, value, value + "@ncsu.edu", "pw"));
-		}
+		fillCourseRoll(c);
 		
 		try {
 			c.enroll(new Student("f", "l", "fl", "fl@ncsu.edu", "pw"));
@@ -119,10 +155,7 @@ public class CourseRollTest {
 		c.drop(s);
 		assertTrue(c.canEnroll(s));
 		
-		for (int i = 0; c.getOpenSeats() > 0; i++) {
-			String value = "student" + i;
-			c.enroll(new Student(value, value, value, value + "@ncsu.edu", "pw"));
-		}
+		fillCourseRoll(c);
 		assertFalse(c.canEnroll(s));
 		
 		try {
