@@ -89,14 +89,6 @@ public class CourseRollTest {
 	public void testDrop() {
 		CourseRoll c = new CourseRoll(10);
 		Student s = new Student("first", "last", "flast", "flast@ncsu.edu", "pw");
-
-		try {
-			c.drop(s);
-			fail();
-		} catch (IllegalArgumentException e) {
-			// Cannot drop from empty course roll
-			assertEquals(10, c.getOpenSeats());
-		}
 		
 		c.enroll(s);
 		assertEquals(9, c.getOpenSeats());

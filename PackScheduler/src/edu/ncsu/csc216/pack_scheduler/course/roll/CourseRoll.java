@@ -39,11 +39,7 @@ public class CourseRoll {
 			throw new IllegalArgumentException();
 		}
 		
-		if (roll != null) {
-			if (enrollmentCap > roll.size()) {
-				this.enrollmentCap = enrollmentCap;
-			}
-		} else {
+		if (roll == null || enrollmentCap >= roll.size()) {
 			this.enrollmentCap = enrollmentCap;
 		}
 	}
@@ -69,10 +65,7 @@ public class CourseRoll {
 	 * @param s Student wanting to enroll
 	 */
 	public void enroll(Student s) {
-		if (s == null) {
-			throw new IllegalArgumentException();
-		}
-		if (getOpenSeats() == 0) {
+		if (!canEnroll(s)) {
 			throw new IllegalArgumentException();
 		}
 		roll.add(0, s);
@@ -86,16 +79,7 @@ public class CourseRoll {
 		if (s == null) {
 			throw new IllegalArgumentException();
 		}
-		int remove = -1;
-		for (int i = 0; i < roll.size(); i++) {
-			if (s.equals(roll.get(i))) {
-				remove = i;
-			}
-		}
-		if (remove == -1) {
-			throw new IllegalArgumentException();
-		}
-		roll.remove(remove);
+		roll.remove(s);
 	}
 	
 	/**
@@ -117,6 +101,5 @@ public class CourseRoll {
 		}
 		return true;
 	}
-	
 	
 }
